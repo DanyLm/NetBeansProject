@@ -13,18 +13,34 @@ public class Chien extends Animals{
 
     private String[] race;
     
+    /**
+     *
+     */
     public Chien() {
         super();
     }
 
+    /**
+     *
+     * @param prenom_Animals
+     * @param cri_Animals
+     */
     public Chien(String prenom_Animals, String cri_Animals) {
         super(prenom_Animals, cri_Animals);
     }
 
+    /**
+     *
+     * @return
+     */
     public String[] getRace() {
         return race;
     }
 
+    /**
+     *
+     * @param race
+     */
     public void setRace(String[] race) {
         this.race = race;
     }

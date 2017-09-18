@@ -15,6 +15,10 @@ public class main {
     static String animals = null;   
     static Animals animal_ = new Animals();   
     
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args){ 
         
         
@@ -66,7 +70,10 @@ public class main {
         
     } 
     
-    
+    /**
+     *
+     * @return
+     */
     public static String criAnimals(){
         String var;
         
