@@ -10,7 +10,11 @@ package comportement;
  * @author DanyL
  */
 public class CombatCouteau implements EspritCombatif {	
+    
     public void combat() {
         System.out.println("Je me bats au couteau !");
+    }
+    public void attaque(String nomPersonnage){
+        System.out.println(nomPersonnage+" attaque un perso qui combat au couteau");
     }
 }

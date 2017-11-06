@@ -11,6 +11,9 @@ package comportement;
  */
 public class Pacifiste implements EspritCombatif {
     public void combat() {
-      System.out.println("Je ne combats pas !");
+        System.out.println("Je ne combats pas !");
+    }
+    public void attaque(String nomPersonnage){
+        System.out.println(nomPersonnage+" attaque une personne sans défense");
     }
 }

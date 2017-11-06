@@ -13,4 +13,7 @@ public class CombatPistolet implements EspritCombatif{
     public void combat() {
         System.out.println("Je combats au pitolet !");
     }
+    public void attaque(String nomPersonnage){
+        System.out.println(nomPersonnage+" attaque un combattant pistolet");
+    }
 }

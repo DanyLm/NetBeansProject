@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 package comportement;
-
 /**
  *
  * @author DanyL
  */
 public interface EspritCombatif {
     void combat();
+    void attaque(String nomPersonnage);
 }
