@@ -14,4 +14,12 @@ public class AucunSoin implements Soin {
     public void soigne() {
         System.out.println("Je ne donne AUCUN soin !");
     }
+    
+    public int soigne(int vie, int maxLife){
+        throw new UnsupportedOperationException("Ce personnage ne donne aucun soins");
+    }
+    
+    public int opere(int vie, int maxLife){
+        throw new UnsupportedOperationException("Ce personnage ne donne aucun soins intensif");
+    }
 }

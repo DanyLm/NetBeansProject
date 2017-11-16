@@ -13,8 +13,12 @@ import comportement.*;
 public class Guerrier extends Personnage {	
     public Guerrier(){
         this.espritCombatif = new CombatPistolet();
+        this.vie = 120;
+        this.maxLife = 120;
+        this.atk = 70;
     }
-    public Guerrier(EspritCombatif esprit, Soin soin, Deplacement dep, String name) {
-        super(esprit, soin, dep, name);
+    public Guerrier(EspritCombatif esprit, Soin soin, Deplacement dep, String name, int vie, int atk, int maxLife) {
+        super(esprit, soin, dep, name, vie, atk, maxLife);
+        
     }
 }

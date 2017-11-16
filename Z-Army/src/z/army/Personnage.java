@@ -17,16 +17,24 @@ public abstract class Personnage {
     protected Soin soin = new AucunSoin();
     protected Deplacement deplacement = new Marcher();
     protected String nomPersonnage;
+    protected int vie = 100;
+    protected int atk = 30;
+    
+    protected int maxLife = 100;
 
     //Constructeur par défaut
     public Personnage(){}
 
     //Constructeur avec paramètres
-    public Personnage(EspritCombatif espritCombatif, Soin soin, Deplacement deplacement, String nomPersonnage) {
+    public Personnage(EspritCombatif espritCombatif, 
+            Soin soin, Deplacement deplacement, String nomPersonnage, 
+            int vie, int atk, int maxLife) {
       this.espritCombatif = espritCombatif;
       this.soin = soin;
       this.deplacement = deplacement;
       this.nomPersonnage = nomPersonnage;
+      this.vie = vie;
+      this.atk = atk;
     }
 
     //Méthode de déplacement de personnage
@@ -40,16 +48,51 @@ public abstract class Personnage {
       //On utilise les objets de déplacement de façon polymorphe
       espritCombatif.combat();
     }
-
-    // Méthode que les combattants utilisent pour attaquer
-    public void attaque(String nomPersonnage){
-        espritCombatif.attaque(nomPersonnage);
-    }
-
+  
     //Méthode de soin
     public void soigner(){
       //On utilise les objets de déplacement de façon polymorphe
       soin.soigne();
+    }
+    
+    public void soigner(Personnage uneVictime){
+        int newLife = this.soin.soigne(uneVictime.getVie(), uneVictime.getMaxLife());
+        uneVictime.setVie(notExceedMaxLife(uneVictime, newLife));
+    }
+    /// a refaire
+    private int notExceedMaxLife(Personnage uneVictime, int vie){
+        
+        if(vie > uneVictime.getMaxLife()){
+            vie = uneVictime.getMaxLife();
+        }
+        
+        return vie;
+    }
+    
+    public void opere(Personnage uneVictime){
+        uneVictime.setVie(
+                this.soin.opere(
+                        uneVictime.getVie(), uneVictime.getMaxLife()
+                )
+        );
+    }
+    
+    
+    public void estAttaquer(Personnage unAttaquant){
+        this.setVie(
+                deadOrNot(
+                        this.espritCombatif.estAttaquer(unAttaquant.getAtk(), this.vie)
+                )
+        );
+    }
+    
+    private int deadOrNot(int vie){
+        
+        if(vie < 0){
+            vie = 0;
+        }
+        
+        return vie;
     }
 
     //Redéfinit le comportement au combat
@@ -74,5 +117,28 @@ public abstract class Personnage {
     public void setNomPersonnage(String nomPersonnage) {
         this.nomPersonnage = nomPersonnage;
     }
-  
+
+    public int getVie() {
+        return vie;
+    }
+
+    public void setVie(int vie) {
+        this.vie = vie;
+    }
+
+    public int getMaxLife() {
+        return maxLife;
+    }
+
+    public void setMaxLife(int maxLife) {
+        this.maxLife = maxLife;
+    }
+
+    public int getAtk() {
+        return atk;
+    }
+
+    public void setAtk(int atk) {
+        this.atk = atk;
+    }
 }

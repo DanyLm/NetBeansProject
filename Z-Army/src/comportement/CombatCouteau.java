@@ -14,7 +14,11 @@ public class CombatCouteau implements EspritCombatif {
     public void combat() {
         System.out.println("Je me bats au couteau !");
     }
-    public void attaque(String nomPersonnage){
-        System.out.println(nomPersonnage+" attaque un perso qui combat au couteau");
+    
+    public int estAttaquer(int atk, int vie){
+        int pAtk = atk;
+        int newPointVie = vie-atk;
+        return newPointVie;
     }
+
 }

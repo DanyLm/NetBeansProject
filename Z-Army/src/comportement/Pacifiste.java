@@ -13,7 +13,10 @@ public class Pacifiste implements EspritCombatif {
     public void combat() {
         System.out.println("Je ne combats pas !");
     }
-    public void attaque(String nomPersonnage){
-        System.out.println(nomPersonnage+" attaque une personne sans défense");
+    
+    public int estAttaquer(int atk, int vie){
+        int pAtk = atk;
+        int newPointVie = vie-atk/2;
+        return newPointVie;
     }
 }

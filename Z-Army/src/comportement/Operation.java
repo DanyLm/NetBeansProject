@@ -14,4 +14,15 @@ public class Operation implements Soin{
     public void soigne() {
         System.out.println("Je pratique des opérations !");
     }
+    
+    public int soigne(int vie, int maxLife){
+        throw new UnsupportedOperationException("Ce medecin donne seulement des soins intensif");
+    }
+    
+    public int opere(int vie, int maxLife){
+        System.out.print("Opération en cour...");
+        vie = maxLife;
+        return vie;
+    }
+
 }

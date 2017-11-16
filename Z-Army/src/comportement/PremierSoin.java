@@ -13,4 +13,13 @@ public class PremierSoin implements Soin {
     public void soigne() {
         System.out.println("Je donne les premiers soins.");
     }
+    
+    public int soigne(int vie, int maxLife){
+        vie = vie + 25;
+        return vie;
+    }
+    
+    public int opere(int vie, int maxLife){
+        throw new UnsupportedOperationException("Ce medecin donne seulement des premiers soins");
+    }
 }

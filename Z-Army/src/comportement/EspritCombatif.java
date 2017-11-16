@@ -10,5 +10,5 @@ package comportement;
  */
 public interface EspritCombatif {
     void combat();
-    void attaque(String nomPersonnage);
+    int estAttaquer(int atk, int vie);
 }
