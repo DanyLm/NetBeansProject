@@ -5,6 +5,8 @@
  */
 package z.army;
 import comportement.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -20,34 +22,87 @@ public class ZArmy {
         Scanner inputText = new Scanner(System.in);
         String nomPersonnage;
         String cible;
+        boolean persoExist = false;
         
-        Personnage harry = new Guerrier();
-        harry.setNomPersonnage("harry");
-        Personnage voldemort = new Guerrier();
-        voldemort.setNomPersonnage("voldemort");
+        Personnage monPerso = null;
+        
+        Personnage sorcier = new Guerrier();
+        sorcier.setNomPersonnage("sorcier");
+        Personnage mangeMort = new Guerrier();
+        mangeMort.setNomPersonnage("mangemort");
         Personnage unMedecin = new Medecin();
         unMedecin.setNomPersonnage("medecin");
-        Personnage unCivil = new Civil();
-        unCivil.setNomPersonnage("civil");
+        Personnage unMoldu = new Civil();
+        unMoldu.setNomPersonnage("moldu");
         
-        Personnage objet = harry; //Choix de mon personnage pour plus tard
+        List<Personnage> lesPersonnages = new ArrayList();
+        lesPersonnages.add(sorcier);
+        lesPersonnages.add(mangeMort);
+        lesPersonnages.add(unMedecin);
+        lesPersonnages.add(unMoldu);
+
+        do{
+            menu(lesPersonnages);
+            System.out.print("\nQuel personnage voulez-vous êtres ? ");
+            nomPersonnage = inputText.nextLine();
+            for (Personnage unPersonnage : lesPersonnages) {
+                if(nomPersonnage.toLowerCase().equals(unPersonnage.getNomPersonnage())){
+                    monPerso = unPersonnage;
+                    persoExist =! persoExist;
+                }
+            }
+            
+            if(!persoExist){
+                System.err.println("Ce personnage n'existe pas !");
+            }
+
+        }while(!persoExist);
         
-        Personnage[] lesPersonnages = {harry, voldemort, unMedecin, unCivil};
+        lesPersonnages.remove(monPerso);
         
         while(true){
             
+            persoExist = true;
+            
+            menu(lesPersonnages);
+            
             System.out.print("Qui voulez-vous attaquer ? ");
             cible = inputText.nextLine();
-            
+
             for (Personnage unPersonnage : lesPersonnages) {
-                if(cible.equals(unPersonnage.getNomPersonnage())){
-                    unPersonnage.estAttaquer(objet);
-                    System.out.println(unPersonnage.getVie() + unPersonnage.toString());
+                
+                persoExist = false;
+                
+                if(cible.equals(monPerso.getNomPersonnage())){
+                    System.err.println("Vous ne pouvez pas attaquez votre propre personnage");
+                    persoExist = true;
+                    break;
                 }
+                else if(cible.equals(unPersonnage.getNomPersonnage())){
+                    unPersonnage.estAttaquer(monPerso);
+                    System.out.println("Jattaque");
+                    persoExist = true;
+                    break;
+                }
+                
+            }
+            
+            if(!persoExist){
+                System.err.println("Veuillez choisir un personnage valide");
             }
            
         }
 
+    }
+    
+    private static void menu(List<Personnage> lesPersonnages){
+        
+        System.out.println("##################");
+        for(Personnage unPersonnage : lesPersonnages){
+            System.out.println("## " + unPersonnage.getNomPersonnage());
+        }
+        System.out.println("##################");
+        
     }
     
     public void test(){
@@ -67,50 +122,4 @@ public class ZArmy {
         pers.setSoin(new Operation());
         pers.soigner();
     }
-    
-    
-    public void other(){
-        ////////////////////////////////////////////////////////////////////////////////
-        /*
-        
-        // Test demande à l'utilisateur un nom pour son guerrier
-        System.out.println("\nTest des attaques !");
-        System.out.println("*****************************************");
-        Personnage harry = new Guerrier();      
-        harry.setNomPersonnage("harry");
-    
-        Personnage merlin = new Guerrier();
-        System.out.println("Nombre de vie de merlin avant l'attaque : "+merlin.getVie());
-        
-        System.out.println(harry.getNomPersonnage()+" attaque merlin");
-         
-        System.out.println("L'attaquant posséde "+harry.getAtk()+" point d'attaque");
-        merlin.estAttaquer(harry);
-        System.out.println("Nombre de vie de merlin apres l'attaque : "+merlin.getVie());
-        
-        /////////////////////////////////////////////////////////////////////////////////
-        
-        System.out.println("\nNouveau test des attaques !");
-        System.out.println("*****************************************");
-        Personnage brute = new Guerrier();
-        Personnage doctor = new Medecin();
-        
-        System.out.println("Nombre de vie du doctor avant l'attaque : "+doctor.getVie());  
-        System.out.println("la brute attaque le doctor"); 
-        System.out.println("L'attaquant posséde "+brute.getAtk()+" point d'attaque");
-        doctor.estAttaquer(brute);
-        System.out.println("Nombre de vie du doctor apres l'attaque : "+doctor.getVie());
-        System.out.println("Le doctor soigne merlin");
-        doctor.soigner(merlin);
-        System.out.println("Merlin a maitenant "+merlin.getVie()+" point de vie");
-       
-        System.out.println("Mon dieu c'est une blessure grave !! Le chirurgien va arranger sa...");
-        doctor.setSoin(new Operation());
-        
-        doctor.opere(merlin);
-        System.out.println("Merlin a maitenant "+merlin.getVie()+" point de vie, il a recuperer toute sa vie");*/
-                
-        /////////////////////////////////////////////////////////////////////////////////
-    }
-    
 }
