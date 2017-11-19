@@ -20,6 +20,7 @@ public class ZArmy {
      */
     public static void main(String[] args) {
         Scanner inputText = new Scanner(System.in);
+        Cimetiere alivePersonnages = new Cimetiere();
         String nomPersonnage;
         String cible;
         boolean persoExist = false;
@@ -64,7 +65,7 @@ public class ZArmy {
             
             persoExist = true;
             
-            menu(lesPersonnages);
+            menu(alivePersonnages.isDead(lesPersonnages));
             
             System.out.print("Qui voulez-vous attaquer ? ");
             cible = inputText.nextLine();
@@ -95,7 +96,7 @@ public class ZArmy {
 
     }
     
-    private static void menu(List<Personnage> lesPersonnages){
+    public static void menu(List<Personnage> lesPersonnages){
         
         System.out.println("##################");
         for(Personnage unPersonnage : lesPersonnages){
@@ -104,22 +105,5 @@ public class ZArmy {
         System.out.println("##################");
         
     }
-    
-    public void test(){
-        Personnage[] tPers = {new Guerrier(), new Civil(), new Medecin()};
-        for (Personnage tPer : tPers) {
-            System.out.println("\nInstance de " + tPer.getClass().getName());
-            System.out.println("*****************************************");
-            tPer.combattre();
-            tPer.seDeplacer();
-            tPer.soigner();
-        }
-        
-        System.out.println("\nMon personnage qui est un guerrier peut maintenant donner des soins !");
-        System.out.println("*****************************************");
-        Personnage pers = new Guerrier();
-        pers.soigner();
-        pers.setSoin(new Operation());
-        pers.soigner();
-    }
+ 
 }

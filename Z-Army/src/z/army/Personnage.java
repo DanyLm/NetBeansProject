@@ -37,29 +37,11 @@ public abstract class Personnage {
       this.atk = atk;
     }
 
-    //Méthode de déplacement de personnage
-    public void seDeplacer(){
-      //On utilise les objets de déplacement de façon polymorphe
-      deplacement.deplacer();
-    }
-
-    // Méthode que les combattants utilisent
-    public void combattre(){
-      //On utilise les objets de déplacement de façon polymorphe
-      espritCombatif.combat();
-    }
-  
-    //Méthode de soin
-    public void soigner(){
-      //On utilise les objets de déplacement de façon polymorphe
-      soin.soigne();
-    }
-    
     public void soigner(Personnage uneVictime){
         int newLife = this.soin.soigne(uneVictime.getVie(), uneVictime.getMaxLife());
         uneVictime.setVie(notExceedMaxLife(uneVictime, newLife));
     }
-    /// a refaire
+    
     private int notExceedMaxLife(Personnage uneVictime, int vie){
         
         if(vie > uneVictime.getMaxLife()){
@@ -97,17 +79,17 @@ public abstract class Personnage {
 
     //Redéfinit le comportement au combat
     public void setEspritCombatif(EspritCombatif espritCombatif) {
-      this.espritCombatif = espritCombatif;
+        this.espritCombatif = espritCombatif;
     }
 
     //Redéfinit le comportement de Soin
     public void setSoin(Soin soin) {
-      this.soin = soin;
+        this.soin = soin;
     }
 
     //Redéfinit le comportement de déplacement
     public void setDeplacement(Deplacement deplacement) {
-      this.deplacement = deplacement;
+        this.deplacement = deplacement;
     }
 
     public String getNomPersonnage() {
