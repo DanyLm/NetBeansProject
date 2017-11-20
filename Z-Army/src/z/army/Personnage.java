@@ -16,6 +16,7 @@ public abstract class Personnage {
     protected EspritCombatif espritCombatif = new Pacifiste();
     protected Soin soin = new AucunSoin();
     protected Deplacement deplacement = new Marcher();
+    protected PersonnageSpiritSoul spiritSoul = new Mortel();
     protected String nomPersonnage;
     protected int vie = 100;
     protected int atk = 30;
@@ -27,11 +28,12 @@ public abstract class Personnage {
 
     //Constructeur avec paramètres
     public Personnage(EspritCombatif espritCombatif, 
-            Soin soin, Deplacement deplacement, String nomPersonnage, 
+            Soin soin, Deplacement deplacement, PersonnageSpiritSoul spiritSoul, String nomPersonnage, 
             int vie, int atk, int maxLife) {
       this.espritCombatif = espritCombatif;
       this.soin = soin;
       this.deplacement = deplacement;
+      this.spiritSoul = spiritSoul;
       this.nomPersonnage = nomPersonnage;
       this.vie = vie;
       this.atk = atk;
@@ -90,6 +92,10 @@ public abstract class Personnage {
     //Redéfinit le comportement de déplacement
     public void setDeplacement(Deplacement deplacement) {
         this.deplacement = deplacement;
+    }
+    
+    public void setSpiritSoul(PersonnageSpiritSoul spiritSoul){
+        this.spiritSoul = spiritSoul;
     }
 
     public String getNomPersonnage() {
