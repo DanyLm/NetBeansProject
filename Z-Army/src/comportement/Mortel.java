@@ -5,10 +5,16 @@
  */
 package comportement;
 
+import java.util.List;
+import z.army.Personnage;
+
 /**
  *
  * @author DanyL
  */
 public class Mortel implements PersonnageSpiritSoul {
-    
+    public List<Personnage> isResurrect(List <Personnage> lesPersonnages, List<Personnage> lesPersonnagesDead){
+        System.out.println("Je ne peut pas êtres ressucité !");
+        return null;
+    }
 }

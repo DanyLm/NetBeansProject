@@ -21,6 +21,7 @@ public class ZArmy {
      * @param args the command line arguments
      */
     static Cimetiere alivePersonnages = new Cimetiere();
+    static Personnage god = new God();
 
     public static void main(String[] args) {
         Scanner inputText = new Scanner(System.in);
@@ -68,7 +69,7 @@ public class ZArmy {
 
             persoExist = true;
             lesPersonnages = allDead(alivePersonnages.isDead(lesPersonnages));
-           
+
             menu(lesPersonnages, persoExist);
 
             System.out.print("Qui voulez-vous attaquer ? ");
@@ -128,7 +129,9 @@ public class ZArmy {
             String answer = inputText.nextLine();
 
             if (answer.toLowerCase().equals("o")) {
-                lesPersonnagesResurrect = alivePersonnages.resurrect();
+                System.out.println("\nDieu à ressucité tous les personnages !\n");
+                lesPersonnagesResurrect = god.resurrect(lesPersonnagesResurrect, alivePersonnages.getLesPersonnagesInPeace());
+                alivePersonnages.setLesPersonnagesInPeaceToNone();
             } else if (answer.toLowerCase().equals("n")) {
                 System.out.println("Au revoir.");
                 exit(0);

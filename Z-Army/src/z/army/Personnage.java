@@ -5,6 +5,7 @@
  */
 package z.army;
 import comportement.*;
+import java.util.List;
 
 /**
  *
@@ -77,6 +78,11 @@ public abstract class Personnage {
         }
         
         return vie;
+    }
+    
+    public List<Personnage> resurrect(List<Personnage> lesPersonnages, List<Personnage> lesPersonnagesDead){
+        lesPersonnages = this.spiritSoul.isResurrect(lesPersonnages, lesPersonnagesDead);
+        return lesPersonnages;
     }
 
     //Redéfinit le comportement au combat

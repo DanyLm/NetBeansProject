@@ -35,21 +35,6 @@ public class Cimetiere {
         return lesPersonnages;
     }
 
-    public List<Personnage> resurrect() {
-
-        List<Personnage> lesPersonnages = this.lesPersonnagesInPeace;
-        List<Personnage> lesPersonnagesToResurrect = new ArrayList();
-
-        for (Personnage unPersonnage : lesPersonnages) {
-            unPersonnage.setVie(unPersonnage.getMaxLife());
-            lesPersonnagesToResurrect.add(unPersonnage);
-        }
-        
-        this.lesPersonnagesInPeace.removeAll(lesPersonnagesInPeace);
-        
-        return lesPersonnagesToResurrect;
-    }
-
     private boolean isDead(Personnage unPersonnage) {
         boolean isDead = false;
 
@@ -64,8 +49,8 @@ public class Cimetiere {
         return lesPersonnagesInPeace;
     }
 
-    public void setLesPersonnagesInPeace(List<Personnage> lesPersonnagesInPeace) {
-        this.lesPersonnagesInPeace = lesPersonnagesInPeace;
+    public void setLesPersonnagesInPeaceToNone() {
+        this.lesPersonnagesInPeace.removeAll(lesPersonnagesInPeace);
     }
 
 }

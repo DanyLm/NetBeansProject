@@ -5,10 +5,13 @@
  */
 package comportement;
 
+import java.util.List;
+import z.army.Personnage;
+
 /**
  *
  * @author DanyL
  */
 public interface PersonnageSpiritSoul {
-    
+    public List<Personnage> isResurrect(List <Personnage> lesPersonnages, List<Personnage> lesPersonnagesDead);
 }
