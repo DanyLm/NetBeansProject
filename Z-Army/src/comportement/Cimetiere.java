@@ -42,5 +42,9 @@ public class Cimetiere{
         
         return isDead;
     }
-    
+
+    public List<Personnage> getLesPersonnagesInPeace() {
+        return lesPersonnagesInPeace;
+    }
+
 }

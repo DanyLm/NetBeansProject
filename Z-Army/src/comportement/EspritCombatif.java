@@ -4,11 +4,13 @@
  * and open the template in the editor.
  */
 package comportement;
+import z.army.Personnage;
+
 /**
  *
  * @author DanyL
  */
 public interface EspritCombatif {
     void combat();
-    int estAttaquer(int atk, int vie);
+    int estAttaquer(Personnage unAttaquant, Personnage unDefenseur);
 }

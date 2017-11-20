@@ -4,19 +4,22 @@
  * and open the template in the editor.
  */
 package comportement;
+import z.army.Personnage;
 
 /**
  *
  * @author DanyL
  */
 public class Pacifiste implements EspritCombatif {
+    
     public void combat() {
         System.out.println("Je ne combats pas !");
     }
     
-    public int estAttaquer(int atk, int vie){
-        int pAtk = atk;
-        int newPointVie = vie-atk/2;
+    public int estAttaquer(Personnage unAttaquant, Personnage unDefenseur){
+        System.out.println(unAttaquant.getNomPersonnage() + " attaque " + unDefenseur.getNomPersonnage());
+        int pAtk = unAttaquant.getAtk();
+        int newPointVie = unDefenseur.getVie()-pAtk/2;
         return newPointVie;
     }
 }

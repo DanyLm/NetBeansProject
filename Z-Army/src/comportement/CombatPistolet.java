@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package comportement;
+import z.army.Personnage;
+
 /**
  *
  * @author DanyL
@@ -14,9 +16,10 @@ public class CombatPistolet implements EspritCombatif {
         System.out.println("Je combats au pitolet !");
     }
     
-    public int estAttaquer(int atk, int vie){
-        int pAtk = atk;
-        int newPointVie = vie-atk;
+    public int estAttaquer(Personnage unAttaquant, Personnage unDefenseur){
+        System.out.println(unAttaquant.getNomPersonnage() + " attaque " + unDefenseur.getNomPersonnage());
+        int pAtk = unAttaquant.getAtk();
+        int newPointVie = unDefenseur.getVie()-pAtk/2;
         return newPointVie;
     }
 }

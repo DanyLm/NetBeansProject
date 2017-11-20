@@ -63,7 +63,7 @@ public abstract class Personnage {
     public void estAttaquer(Personnage unAttaquant){
         this.setVie(
                 deadOrNot(
-                        this.espritCombatif.estAttaquer(unAttaquant.getAtk(), this.vie)
+                        this.espritCombatif.estAttaquer(unAttaquant, this)
                 )
         );
     }
