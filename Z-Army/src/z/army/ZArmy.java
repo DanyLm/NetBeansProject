@@ -6,9 +6,9 @@
 package z.army;
 
 import comportement.*;
-import static java.lang.System.exit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -20,15 +20,13 @@ public class ZArmy {
     /**
      * @param args the command line arguments
      */
-    static Cimetiere alivePersonnages = new Cimetiere();
-    static Personnage god = new God();
-
     public static void main(String[] args) {
         Scanner inputText = new Scanner(System.in);
+        Menu menu = new Menu();
+        Cimetiere alivePersonnages = new Cimetiere();
         String nomPersonnage;
         String cible;
         boolean persoExist = false;
-
         Personnage monPerso = null;
 
         Personnage sorcier = new Guerrier();
@@ -47,7 +45,7 @@ public class ZArmy {
         lesPersonnages.add(unMoldu);
 
         do {
-            menu(lesPersonnages, persoExist);
+            menu.menu(lesPersonnages, persoExist, alivePersonnages);
             System.out.print("\nQuel personnage voulez-vous êtres ? ");
             nomPersonnage = inputText.nextLine();
             for (Personnage unPersonnage : lesPersonnages) {
@@ -56,7 +54,6 @@ public class ZArmy {
                     persoExist = !persoExist;
                 }
             }
-
             if (!persoExist) {
                 System.err.println("Ce personnage n'existe pas !");
             }
@@ -66,82 +63,15 @@ public class ZArmy {
         lesPersonnages.remove(monPerso);
 
         while (true) {
-
             persoExist = true;
-            lesPersonnages = allDead(alivePersonnages.isDead(lesPersonnages));
-
-            menu(lesPersonnages, persoExist);
-
+            lesPersonnages = menu.allDead(alivePersonnages.isDead(lesPersonnages), alivePersonnages);
+            menu.menu(lesPersonnages, persoExist, alivePersonnages);
             System.out.print("Qui voulez-vous attaquer ? ");
             cible = inputText.nextLine();
-
-            for (Personnage unPersonnage : lesPersonnages) {
-
-                persoExist = false;
-
-                if (cible.equals(monPerso.getNomPersonnage())) {
-                    System.err.println("Vous ne pouvez pas attaquez votre propre personnage");
-                    persoExist = true;
-                    break;
-                } else if (cible.equals(unPersonnage.getNomPersonnage())) {
-                    unPersonnage.estAttaquer(monPerso);
-                    persoExist = true;
-                    break;
-                }
-
-            }
-
+            persoExist = menu.quelPerso(lesPersonnages, monPerso, cible);
             if (!persoExist) {
                 System.err.println("Veuillez choisir un personnage valide");
             }
-
         }
-
     }
-
-    public static void menu(List<Personnage> lesPersonnages, boolean persoExist) {
-
-        System.out.println("############################");
-        System.out.println("## Liste des perso vivant ##");
-        for (Personnage unPersonnage : lesPersonnages) {
-            System.out.println("## " + unPersonnage.getNomPersonnage() + " - " + unPersonnage.getVie() + " vie" + " | " + unPersonnage.getAtk() + " atk");
-        }
-        System.out.println("############################");
-
-        if (persoExist) {
-            System.out.println("##########################");
-            System.out.println("## Liste des perso mort ##");
-
-            for (Personnage unPersonnage : alivePersonnages.getLesPersonnagesInPeace()) {
-                System.out.println("## " + unPersonnage.getNomPersonnage());
-            }
-            System.out.println("##########################");
-        }
-        //System.out.println(alivePersonnages.getLesPersonnagesInPeace().get(0).getNomPersonnage());
-    }
-
-    public static List<Personnage> allDead(List<Personnage> lesPersonnagesToRessurect) {
-        Scanner inputText = new Scanner(System.in);
-        List<Personnage> lesPersonnagesResurrect = lesPersonnagesToRessurect;
-
-        if (lesPersonnagesResurrect.isEmpty()) {
-            System.out.print("Voulez-vous ressuitez tous les personnages (o/n) ? ");
-            String answer = inputText.nextLine();
-
-            if (answer.toLowerCase().equals("o")) {
-                System.out.println("\nDieu à ressucité tous les personnages !\n");
-                lesPersonnagesResurrect = god.resurrect(lesPersonnagesResurrect, alivePersonnages.getLesPersonnagesInPeace());
-                alivePersonnages.setLesPersonnagesInPeaceToNone();
-            } else if (answer.toLowerCase().equals("n")) {
-                System.out.println("Au revoir.");
-                exit(0);
-            } else {
-                System.err.println("Mauvaise reponse");
-            }
-
-        }
-
-        return lesPersonnagesResurrect;
-    }
-
 }

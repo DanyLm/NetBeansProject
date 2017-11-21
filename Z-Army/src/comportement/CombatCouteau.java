@@ -17,9 +17,11 @@ public class CombatCouteau implements EspritCombatif {
     }
     
     public int estAttaquer(Personnage unAttaquant, Personnage unDefenseur){
-        System.out.println(unAttaquant.getNomPersonnage() + " attaque " + unDefenseur.getNomPersonnage());
+        System.out.println(unAttaquant.getNomPersonnage() + " lance des coup de couteau à" + unDefenseur.getNomPersonnage());
         int pAtk = unAttaquant.getAtk();
-        int newPointVie = unDefenseur.getVie()-pAtk;
+        int newPointVie = unDefenseur.getVie()-pAtk/2;
+        unAttaquant.setAtk(pAtk+10);
+        System.out.println("Nouveau point d'attaque de " + unAttaquant.getNomPersonnage() + " -> " + unAttaquant.getAtk());
         return newPointVie;
     }
 

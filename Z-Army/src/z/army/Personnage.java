@@ -62,11 +62,19 @@ public abstract class Personnage {
         );
     }
     
-    
+    /*
     public void estAttaquer(Personnage unAttaquant){
         this.setVie(
                 deadOrNot(
                         this.espritCombatif.estAttaquer(unAttaquant, this)
+                )
+        );
+    }*/
+    
+    public void attaque(Personnage unDefenseur){
+        unDefenseur.setVie(
+                deadOrNot(
+                        this.espritCombatif.estAttaquer(this, unDefenseur)
                 )
         );
     }

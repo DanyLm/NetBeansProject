@@ -4,22 +4,24 @@
  * and open the template in the editor.
  */
 package comportement;
+
 import z.army.Personnage;
 
 /**
  *
  * @author DanyL
  */
-public class CombatPistolet implements EspritCombatif {
+public class CombatSortilege implements EspritCombatif {	
     
     public void combat() {
-        System.out.println("Je combats au pitolet !");
+        System.out.println("Je me bats au couteau !");
     }
     
     public int estAttaquer(Personnage unAttaquant, Personnage unDefenseur){
-        System.out.println(unAttaquant.getNomPersonnage() + " tire sur " + unDefenseur.getNomPersonnage());
+        System.out.println(unAttaquant.getNomPersonnage() + " lance un sortilege sur " + unDefenseur.getNomPersonnage());
         int pAtk = unAttaquant.getAtk();
-        int newPointVie = unDefenseur.getVie()-pAtk;
+        int newPointVie = unDefenseur.getVie()-pAtk*2;
         return newPointVie;
     }
+
 }
