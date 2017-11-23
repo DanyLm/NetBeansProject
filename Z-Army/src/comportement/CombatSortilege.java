@@ -11,14 +11,10 @@ import z.army.Personnage;
  *
  * @author DanyL
  */
-public class CombatSortilege implements EspritCombatif {	
-    
-    public void combat() {
-        System.out.println("Je me bats au couteau !");
-    }
+public class CombatSortilege implements EspritCombatif {
     
     public int estAttaquer(Personnage unAttaquant, Personnage unDefenseur){
-        System.out.println(unAttaquant.getNomPersonnage() + " lance un sortilege sur " + unDefenseur.getNomPersonnage());
+        System.out.println(unAttaquant.getNomPersonnage() + " lance un sortilege sur " + unDefenseur.getNomPersonnage() + "\n");
         int pAtk = unAttaquant.getAtk();
         int newPointVie = unDefenseur.getVie()-pAtk*2;
         return newPointVie;

@@ -15,42 +15,17 @@ import z.army.Personnage;
  */
 public class Cimetiere {
 
-    List<Personnage> lesPersonnagesInPeace = new ArrayList();
+    private List<Personnage> lesPersonnagesInPeace;
 
-    public List<Personnage> isDead(List<Personnage> lesPersonnagesDead) {
-
-        List<Personnage> lesPersonnages = new ArrayList();
-
-        lesPersonnages.removeAll(lesPersonnages);
-
-        for (Personnage unPersonnage : lesPersonnagesDead) {
-            if (isDead(unPersonnage)) {
-                lesPersonnagesInPeace.add(unPersonnage);
-                System.out.println(unPersonnage.getNomPersonnage() + " est mort, il est au cimetiere !");
-            } else {
-                lesPersonnages.add(unPersonnage);
-            }
-        }
-
-        return lesPersonnages;
-    }
-
-    private boolean isDead(Personnage unPersonnage) {
-        boolean isDead = false;
-
-        if (unPersonnage.getVie() == 0) {
-            isDead = true;
-        }
-
-        return isDead;
+    public Cimetiere() {
+        this.lesPersonnagesInPeace = new ArrayList(); //Ma liste des personnages en paix
     }
 
     public List<Personnage> getLesPersonnagesInPeace() {
         return lesPersonnagesInPeace;
     }
-
+ 
     public void setLesPersonnagesInPeaceToNone() {
-        this.lesPersonnagesInPeace.removeAll(lesPersonnagesInPeace);
+        this.lesPersonnagesInPeace.removeAll(lesPersonnagesInPeace); //Supprime tous les personnages de la liste
     }
-
 }

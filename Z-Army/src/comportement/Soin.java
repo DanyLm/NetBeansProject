@@ -10,7 +10,6 @@ package comportement;
  * @author DanyL
  */
 public interface Soin {
-    void soigne();
     int soigne(int vie, int maxLife);
     int opere(int vie, int maxLife);
 }

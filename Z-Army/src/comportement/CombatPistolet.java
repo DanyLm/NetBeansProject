@@ -12,12 +12,8 @@ import z.army.Personnage;
  */
 public class CombatPistolet implements EspritCombatif {
     
-    public void combat() {
-        System.out.println("Je combats au pitolet !");
-    }
-    
     public int estAttaquer(Personnage unAttaquant, Personnage unDefenseur){
-        System.out.println(unAttaquant.getNomPersonnage() + " tire sur " + unDefenseur.getNomPersonnage());
+        System.out.println(unAttaquant.getNomPersonnage() + " tire sur " + unDefenseur.getNomPersonnage() + "\n");
         int pAtk = unAttaquant.getAtk();
         int newPointVie = unDefenseur.getVie()-pAtk;
         return newPointVie;

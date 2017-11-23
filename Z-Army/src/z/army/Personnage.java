@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package z.army;
+
 import comportement.*;
-import java.util.List;
 
 /**
  *
@@ -17,80 +17,69 @@ public abstract class Personnage {
     protected EspritCombatif espritCombatif = new Pacifiste();
     protected Soin soin = new AucunSoin();
     protected Deplacement deplacement = new Marcher();
-    protected PersonnageSpiritSoul spiritSoul = new Mortel();
     protected String nomPersonnage;
     protected int vie = 100;
     protected int atk = 30;
-    
+
     protected int maxLife = 100;
 
     //Constructeur par défaut
-    public Personnage(){}
-
-    //Constructeur avec paramètres
-    public Personnage(EspritCombatif espritCombatif, 
-            Soin soin, Deplacement deplacement, PersonnageSpiritSoul spiritSoul, String nomPersonnage, 
-            int vie, int atk, int maxLife) {
-      this.espritCombatif = espritCombatif;
-      this.soin = soin;
-      this.deplacement = deplacement;
-      this.spiritSoul = spiritSoul;
-      this.nomPersonnage = nomPersonnage;
-      this.vie = vie;
-      this.atk = atk;
+    public Personnage() {
     }
 
-    public void soigner(Personnage uneVictime){
+    //Constructeur avec paramètres
+    public Personnage(EspritCombatif espritCombatif,
+            Soin soin, Deplacement deplacement, String nomPersonnage,
+            int vie, int atk, int maxLife) {
+        this.espritCombatif = espritCombatif;
+        this.soin = soin;
+        this.deplacement = deplacement;
+        this.nomPersonnage = nomPersonnage;
+        this.vie = vie;
+        this.atk = atk;
+    }
+
+    //Fonction qui permet de soigner un personnage quelconque (seul le medecin possede cette habitliter pr l'instant)
+    public void soigner(Personnage uneVictime) {
         int newLife = this.soin.soigne(uneVictime.getVie(), uneVictime.getMaxLife());
         uneVictime.setVie(notExceedMaxLife(uneVictime, newLife));
     }
-    
-    private int notExceedMaxLife(Personnage uneVictime, int vie){
-        
-        if(vie > uneVictime.getMaxLife()){
+
+    //fonction qui lorsque l'on soigne l'utilisateur emepeche de dépasser la valeur maximal de la vie d'un personnage
+    private int notExceedMaxLife(Personnage uneVictime, int vie) {
+
+        if (vie > uneVictime.getMaxLife()) {
             vie = uneVictime.getMaxLife();
         }
-        
+
         return vie;
     }
-    
-    public void opere(Personnage uneVictime){
+
+    public void opere(Personnage uneVictime) {
         uneVictime.setVie(
                 this.soin.opere(
                         uneVictime.getVie(), uneVictime.getMaxLife()
                 )
         );
     }
-    
-    /*
-    public void estAttaquer(Personnage unAttaquant){
-        this.setVie(
-                deadOrNot(
-                        this.espritCombatif.estAttaquer(unAttaquant, this)
-                )
-        );
-    }*/
-    
-    public void attaque(Personnage unDefenseur){
+
+    //fonction qui permet d'attaquer un personnage a travers une interface
+    public void attaque(Personnage unDefenseur) {
         unDefenseur.setVie(
-                deadOrNot(
+                notNegatif(
                         this.espritCombatif.estAttaquer(this, unDefenseur)
                 )
         );
     }
-    
-    private int deadOrNot(int vie){
-        
-        if(vie < 0){
+
+    //empeche la victime qui subit l'attaque d'avoir une valeur negatif
+    private int notNegatif(int vie) {
+
+        if (vie < 0) {
             vie = 0;
         }
-        
+
         return vie;
-    }
-    
-    public List<Personnage> resurrect(List<Personnage> lesPersonnages, List<Personnage> lesPersonnagesDead){
-        lesPersonnages = this.spiritSoul.isResurrect(lesPersonnages, lesPersonnagesDead);
-        return lesPersonnages;
     }
 
     //Redéfinit le comportement au combat
@@ -106,10 +95,6 @@ public abstract class Personnage {
     //Redéfinit le comportement de déplacement
     public void setDeplacement(Deplacement deplacement) {
         this.deplacement = deplacement;
-    }
-    
-    public void setSpiritSoul(PersonnageSpiritSoul spiritSoul){
-        this.spiritSoul = spiritSoul;
     }
 
     public String getNomPersonnage() {

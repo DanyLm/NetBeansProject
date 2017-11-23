@@ -11,6 +11,5 @@ import z.army.Personnage;
  * @author DanyL
  */
 public interface EspritCombatif {
-    void combat();
     int estAttaquer(Personnage unAttaquant, Personnage unDefenseur);
 }

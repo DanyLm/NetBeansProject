@@ -12,12 +12,8 @@ import z.army.Personnage;
  */
 public class CombatCouteau implements EspritCombatif {	
     
-    public void combat() {
-        System.out.println("Je me bats au couteau !");
-    }
-    
     public int estAttaquer(Personnage unAttaquant, Personnage unDefenseur){
-        System.out.println(unAttaquant.getNomPersonnage() + " lance des coup de couteau à" + unDefenseur.getNomPersonnage());
+        System.out.println(unAttaquant.getNomPersonnage() + " lance des coup de couteau à " + unDefenseur.getNomPersonnage() + "\n");
         int pAtk = unAttaquant.getAtk();
         int newPointVie = unDefenseur.getVie()-pAtk/2;
         unAttaquant.setAtk(pAtk+10);

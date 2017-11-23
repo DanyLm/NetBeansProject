@@ -17,7 +17,7 @@ public class Pacifiste implements EspritCombatif {
     }
     
     public int estAttaquer(Personnage unAttaquant, Personnage unDefenseur){
-        System.out.println(unAttaquant.getNomPersonnage() + " attaque " + unDefenseur.getNomPersonnage());
+        System.out.println(unAttaquant.getNomPersonnage() + " attaque a main nue " + unDefenseur.getNomPersonnage());
         int pAtk = unAttaquant.getAtk();
         int newPointVie = unDefenseur.getVie()-pAtk/2;
         return newPointVie;

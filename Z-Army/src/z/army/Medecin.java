@@ -17,7 +17,7 @@ public class Medecin extends Personnage{
         this.maxLife = 100;
         this.soin = new PremierSoin();
     }
-    public Medecin(EspritCombatif esprit, Soin soin, PersonnageSpiritSoul spiritSoul, Deplacement dep, String name, int vie, int atk, int maxLife) {
-        super(esprit, soin, dep, spiritSoul, name, vie, atk, maxLife);     
+    public Medecin(EspritCombatif esprit, Soin soin, Deplacement dep, String name, int vie, int atk, int maxLife) {
+        super(esprit, soin, dep, name, vie, atk, maxLife);     
     }
 }

@@ -17,8 +17,8 @@ public class Guerrier extends Personnage {
         this.maxLife = 120;
         this.atk = 70;
     }
-    public Guerrier(EspritCombatif esprit, Soin soin, Deplacement dep, PersonnageSpiritSoul spiritSoul, String name, int vie, int atk, int maxLife) {
-        super(esprit, soin, dep, spiritSoul, name, vie, atk, maxLife);
+    public Guerrier(EspritCombatif esprit, Soin soin, Deplacement dep, String name, int vie, int atk, int maxLife) {
+        super(esprit, soin, dep, name, vie, atk, maxLife);
         
     }
 }
