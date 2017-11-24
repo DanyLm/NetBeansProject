@@ -16,7 +16,6 @@ import java.util.Random;
 public class Menu {
 
     public void menu(List<Personnage> lesPersonnages) {
-        System.out.println("\n## Liste des perso vivant ##");
         System.out.println("############################");
         for (Personnage unPersonnage : lesPersonnages) {
             System.out.println(unPersonnage.getNomPersonnage() + " - " + unPersonnage.getVie() + " vie" + " | " + unPersonnage.getAtk() + " atk");
