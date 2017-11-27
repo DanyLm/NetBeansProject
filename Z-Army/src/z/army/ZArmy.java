@@ -6,6 +6,8 @@
 package z.army;
 
 
+import comportement.Juge;
+import comportement.Resurrect;
 import static java.lang.System.exit;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,9 +76,11 @@ public class ZArmy {
 
                 switch (yes_or_not) {
                     case "o":
+                        god.setGodPower(new Resurrect());
                         System.out.println("\nDieu a ressucité tous les personnages !");
                         lesPersonnages = god.resurrectAllPersonnage(god.getCimetiere().getLesPersonnagesInPeace());//Mon personnage Dieu va ressucité tous les personnages
                         //Il peut egalement chercher tous les personnages qui sont dans le cimetiere
+                        god.setGodPower(new Juge());
                         break;
                     case "n":
                         exit(0);
