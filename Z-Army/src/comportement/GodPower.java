@@ -14,5 +14,4 @@ import z.army.Personnage;
  */
 public interface GodPower {
     public List<Personnage> resurrectAllPersonnage(List<Personnage> lesPersonnagesMorts, Cimetiere cimetiere);
-    public List<Personnage> isDeadOrAlive(List<Personnage> lesPersonnages, Cimetiere cimetiere);
 }

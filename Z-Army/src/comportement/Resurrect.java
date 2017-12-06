@@ -28,8 +28,4 @@ public class Resurrect implements GodPower {
 
         return lesPersonnagesRessucite;
     }
-    
-    public List<Personnage> isDeadOrAlive(List<Personnage> lesPersonnages, Cimetiere cimetiere){
-        throw new UnsupportedOperationException("Methode non permise");
-    }
 }

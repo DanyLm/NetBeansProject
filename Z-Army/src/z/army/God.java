@@ -16,7 +16,7 @@ import java.util.List;
 public class God extends Personnage {
 
     private Cimetiere cimetiere = new Cimetiere();
-    private GodPower godPower = new Juge();
+    private GodPower godPower = new Resurrect();
 
     public God() {
         this.vie = 0;
@@ -32,8 +32,24 @@ public class God extends Personnage {
 
     //Le personnage Dieu "juge" si mon personnage est mort ou non, si il est mort il l'envoie au cimetiere
     // Sinon il le renvoie dans la liste des personnage vivant
-    public List<Personnage> isDeadOrAlive(List<Personnage> lesPersonnages) { // je check si il est a 0 ou non (plus tard ajouter une interface vivant ou mort que je chek)
-        return this.godPower.isDeadOrAlive(lesPersonnages, this.cimetiere);
+    public List<Personnage> isDeadOrAlive(List<Personnage> lesPersonnages){
+        
+        List<Personnage> lesPersonnagesVivants = new ArrayList();// creation d'une nouvelle liste de perso vivant pr etre renvoyer 
+
+        for (Personnage unPersonnage : lesPersonnages) {
+            if (unPersonnage.getVie() == 0) {
+                System.out.println(unPersonnage.getNomPersonnage() + " est mort, il envoyé au cimetiere !");
+                addPersonnageToCemetery(unPersonnage);
+            } else {
+                lesPersonnagesVivants.add(unPersonnage);
+            }
+        }
+        return lesPersonnagesVivants;
+    }
+    
+    //Foncrion qui ajouter les personnage jugé mort dans le cimetiere
+    private void addPersonnageToCemetery(Personnage unPersonnage) {//mon personnage mort va etre ajouter au cimetiere
+        this.cimetiere.getLesPersonnagesInPeace().add(unPersonnage);
     }
 
     // Fonction qui ressucite tout les personnages lorsqu'il sont tous mort
